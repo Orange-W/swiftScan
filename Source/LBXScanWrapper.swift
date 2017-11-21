@@ -64,7 +64,11 @@ open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
      - parameter success:      返回识别信息
      - returns:
      */
-    init( videoPreView:UIView,objType:[AVMetadataObject.ObjectType] = [AVMetadataObject.ObjectType.qr],isCaptureImg:Bool,cropRect:CGRect=CGRect.zero,success:@escaping ( ([LBXScanResult]) -> Void) )
+    init( videoPreView:UIView,
+          objType:[AVMetadataObject.ObjectType] = [AVMetadataObject.ObjectType.qr],
+          isCaptureImg:Bool,
+          isFullScreen: Bool,
+          cropRect:CGRect=CGRect.zero,success:@escaping ( ([LBXScanResult]) -> Void) )
     {
         do{
             input = try AVCaptureDeviceInput(device: device!)
@@ -125,6 +129,10 @@ open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
         
         var frame:CGRect = videoPreView.frame
         frame.origin = CGPoint.zero
+        if isFullScreen {
+            frame.origin = CGPoint.init(x: 0, y: -64)
+        }
+        
         previewLayer?.frame = frame
         
         videoPreView.layer .insertSublayer(previewLayer!, at: 0)

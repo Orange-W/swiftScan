@@ -25,7 +25,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
    open var scanStyle: LBXScanViewStyle? = LBXScanViewStyle()
     
    open var qRScanView: LBXScanView?
-
+   open var isFullScreen = false
     
     //启动区域识别功能
    open var isOpenInterestRect = false
@@ -89,7 +89,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
                 arrayCodeType = [AVMetadataObject.ObjectType.qr,AVMetadataObject.ObjectType.ean13,AVMetadataObject.ObjectType.code128]
             }
             
-            scanObj = LBXScanWrapper(videoPreView: self.view,objType:arrayCodeType!, isCaptureImg: isNeedCodeImage,cropRect:cropRect, success: { [weak self] (arrayResult) -> Void in
+            scanObj = LBXScanWrapper(videoPreView: self.view,objType:arrayCodeType!, isCaptureImg: isNeedCodeImage,isFullScreen:isFullScreen,cropRect:cropRect, success: { [weak self] (arrayResult) -> Void in
                 
                 if let strongSelf = self
                 {
