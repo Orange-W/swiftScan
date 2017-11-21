@@ -70,6 +70,8 @@ open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
           isFullScreen: Bool,
           cropRect:CGRect=CGRect.zero,success:@escaping ( ([LBXScanResult]) -> Void) )
     {
+        guard device != nil else { return }
+        
         do{
             input = try AVCaptureDeviceInput(device: device!)
         }
