@@ -25,6 +25,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
    open var scanStyle: LBXScanViewStyle? = LBXScanViewStyle()
     
    open var qRScanView: LBXScanView?
+    
    open var isFullScreen = false
     
     //启动区域识别功能
@@ -115,7 +116,12 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     {
         if qRScanView == nil
         {
-            qRScanView = LBXScanView(frame: self.view.frame,vstyle:scanStyle! )
+            var frame = self.view.frame
+            if isFullScreen {
+                frame.origin = CGPoint.init(x: 0, y: -64)
+                frame.size = CGSize.init(width: frame.size.width, height: frame.size.height + 64)
+            }
+            qRScanView = LBXScanView(frame: frame,vstyle:scanStyle! )
             self.view.addSubview(qRScanView!)
         }
         qRScanView?.deviceStartReadying(readyStr: readyString)

@@ -131,6 +131,7 @@ open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
         frame.origin = CGPoint.zero
         if isFullScreen {
             frame.origin = CGPoint.init(x: 0, y: -64)
+            frame.size = CGSize.init(width: frame.size.width, height: frame.size.height + 64)
         }
         
         previewLayer?.frame = frame
