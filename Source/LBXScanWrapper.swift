@@ -34,14 +34,14 @@ public struct  LBXScanResult {
 
 open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
     
-    let device = AVCaptureDevice.default(for: AVMediaType.video)
+    open let device = AVCaptureDevice.default(for: AVMediaType.video)
     
-    var input:AVCaptureDeviceInput?
-    var output:AVCaptureMetadataOutput
+    open var input:AVCaptureDeviceInput?
+    open var output:AVCaptureMetadataOutput
     
-    let session = AVCaptureSession()
-    var previewLayer:AVCaptureVideoPreviewLayer?
-    var stillImageOutput:AVCaptureStillImageOutput?
+    open let session = AVCaptureSession()
+    open var previewLayer:AVCaptureVideoPreviewLayer?
+    open var stillImageOutput:AVCaptureStillImageOutput?
     
     //存储返回结果
     var arrayResult:[LBXScanResult] = [];
