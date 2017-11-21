@@ -122,6 +122,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
                 frame.size = CGSize.init(width: frame.size.width, height: frame.size.height + 64)
             }
             qRScanView = LBXScanView(frame: frame,vstyle:scanStyle! )
+            qRScanView?.frame = frame
             self.view.addSubview(qRScanView!)
         }
         qRScanView?.deviceStartReadying(readyStr: readyString)
