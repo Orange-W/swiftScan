@@ -34,7 +34,7 @@ public struct  LBXScanResult {
 
 open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
     
-    open let device = AVCaptureDevice.default(for: AVMediaType.video)
+    open var device = AVCaptureDevice.default(for: AVMediaType.video)
     
     open var input:AVCaptureDeviceInput?
     open var output:AVCaptureMetadataOutput
@@ -70,8 +70,10 @@ open class LBXScanWrapper: NSObject,AVCaptureMetadataOutputObjectsDelegate {
           isFullScreen: Bool,
           cropRect:CGRect=CGRect.zero,success:@escaping ( ([LBXScanResult]) -> Void) )
     {
-        guard device != nil else { return }
-        
+        if device == nil {
+            device = AVCaptureDevice.default(for: AVMediaType.video)
+        }
+
         do{
             input = try AVCaptureDeviceInput(device: device!)
         }
