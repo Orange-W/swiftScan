@@ -156,7 +156,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
-        
+        super.viewWillDisappear(animated)
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         
         qRScanView?.stopScanAnimation()
